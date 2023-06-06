@@ -2,7 +2,7 @@ package ejemplos.services;
 
 import ejemplos.models.Examen;
 import ejemplos.repositories.ExamenRepository;
-import ejemplos.repositories.PregunaRepository;
+import ejemplos.repositories.PreguntaRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,11 +10,11 @@ import java.util.Optional;
 public class ExamenServiceImpl implements ExamenService {
 
     private ExamenRepository examenRepository;
-    private PregunaRepository pregunaRepository;
+    private PreguntaRepository preguntaRepository;
 
-    public ExamenServiceImpl(ExamenRepository examenRepository, PregunaRepository pregunaRepository) {
+    public ExamenServiceImpl(ExamenRepository examenRepository, PreguntaRepository preguntaRepository) {
         this.examenRepository = examenRepository;
-        this.pregunaRepository = pregunaRepository;
+        this.preguntaRepository = preguntaRepository;
     }
 
     @Override
@@ -32,7 +32,9 @@ public class ExamenServiceImpl implements ExamenService {
         Examen examen = null;
         if(examenOptional.isPresent()){
             examen = examenOptional.get();
-            List<String> preguntas = pregunaRepository.findPreguntasPorExamenId(examen.getId());
+            List<String> preguntas = preguntaRepository.findPreguntasPorExamenId(examen.getId());
+            // esto es para probar el numero de invocaciones2
+            preguntaRepository.findPreguntasPorExamenId(examen.getId());
             examen.setPreguntas(preguntas);
         }
         return examen;
@@ -41,7 +43,7 @@ public class ExamenServiceImpl implements ExamenService {
     @Override
     public Examen guardar(Examen examen) {
         if(!examen.getPreguntas().isEmpty()){
-            pregunaRepository.guardarVarias(examen.getPreguntas());
+            preguntaRepository.guardarVarias(examen.getPreguntas());
 
         }
         return examenRepository.guardar(examen);

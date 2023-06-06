@@ -2,7 +2,7 @@ package ejemplos.repositories;
 
 import java.util.List;
 
-public interface PregunaRepository {
+public interface PreguntaRepository {
 
     List<String> findPreguntasPorExamenId(Long id);
 

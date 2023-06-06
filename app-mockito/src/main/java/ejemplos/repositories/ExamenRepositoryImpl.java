@@ -4,6 +4,7 @@ import ejemplos.Datos;
 import ejemplos.models.Examen;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ExamenRepositoryImpl implements  ExamenRepository{
 
@@ -17,7 +18,7 @@ public class ExamenRepositoryImpl implements  ExamenRepository{
     public List<Examen> findaAll() {
         System.out.println("ExamenRepositoryImpl.findaAll");
         try{
-            System.out.println("ExamenRepositoryOtro");
+            TimeUnit.SECONDS.sleep(5);
         }catch (Exception e){
             e.printStackTrace();
         }
