@@ -86,10 +86,10 @@ En la dependencia spring boot test viene incluid junit, mockito y otros
 		assertEquals(1, totalDeTransferencias);
 		verify(cuentaRepository, times(3)).findById(1l);
 		verify(cuentaRepository, times(3)).findById(2l);
-		verify(cuentaRepository, times(2)).update(any(Cuenta.class));
+		verify(cuentaRepository, times(2)).save(any(Cuenta.class));
 
 		verify(bancoRepository, times(2)).findById(1l);
-		verify(bancoRepository).update(any(Banco.class));
+		verify(bancoRepository).save(any(Banco.class));
 		// 6 veces e sla sumatoria de las veces anterior que se invoca, pero con un long gral
 		verify(cuentaRepository, times(6)).findById(anyLong());
 		verify(cuentaRepository, never()).findAll();
@@ -123,10 +123,10 @@ En la dependencia spring boot test viene incluid junit, mockito y otros
 		assertEquals(0, totalDeTransferencias);
 		verify(cuentaRepository, times(3)).findById(1l);
 		verify(cuentaRepository, times(2)).findById(2l);
-		verify(cuentaRepository, never()).update(any(Cuenta.class));
+		verify(cuentaRepository, never()).save(any(Cuenta.class));
 
 		verify(bancoRepository, times(1)).findById(1l);
-		verify(bancoRepository, never()).update(any(Banco.class));
+		verify(bancoRepository, never()).save(any(Banco.class));
 		verify(cuentaRepository, times(5)).findById(anyLong());
 		verify(cuentaRepository, never()).findAll();
 

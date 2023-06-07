@@ -1,8 +1,15 @@
 package com.example.springboot_test.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="bancos")
 public class Banco {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     private long id;
     private String nombre;
+
     private int totalTransferencias; // lo dejamos en int, en vez de Integer para que defecto parta en cero
 
     public Banco(){
