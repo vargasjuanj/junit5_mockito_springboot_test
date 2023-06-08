@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CuentaServiceImpl implements CuentaService{
@@ -78,5 +79,14 @@ public class CuentaServiceImpl implements CuentaService{
 
     }
 
+    @Override
+    @Transactional
+    public void deleteById(Long id) {
+        // si no hacía esto del optional y la validación devolvia error 500 servidor, ahora si devuelve NOT_CONTENT
+        Optional<Cuenta> cuenta = cuentaRepository.findById(id);
+        if(cuenta.isPresent()){
+            cuentaRepository.deleteById(id);
+        }
+    }
 
 }

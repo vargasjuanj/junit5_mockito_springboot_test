@@ -19,6 +19,5 @@ public interface CuentaService {
                     Long montoId) ;
 
 
-
-
+    void deleteById(Long id);
 }
